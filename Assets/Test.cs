@@ -1,24 +1,46 @@
 using System.Collections.Generic;
 using Unity.Collections;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Test : MonoBehaviour
 {
-List<int> numbers = new List<int>(){1,2,3,4};
-public List<int> numbers2;
+[SerializeField]
+public int attack;
+
+int hp = 100;
     void Start()
     {
-numbers2[0] = 10;
+    Damage (attack);
 
-numbers2.Add(100);
-
-// numbers2.Clear();
-// numbers2.RemoveAt(0);
-numbers2.Remove (100);
+    GameManager.instance .Test ();
     }
 
     void Update()
     {
         
+    }
+    void Damage(int attackDamage)
+    {
+        hp -= attackDamage;
+        // Debug.Log(hp);
+
+        if (HPCheck())
+        {
+            Debug .Log (name + "はHPが50を切りました");
+        }
+        else
+        {
+            Debug .Log(name + "はHPに余裕があります");
+        }
+    }
+
+    bool HPCheck()
+    {
+        if(hp <= 50)
+        {
+            return true;
+        }
+        return false;
     }
 }
